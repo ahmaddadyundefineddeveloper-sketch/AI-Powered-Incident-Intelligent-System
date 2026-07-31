@@ -270,13 +270,13 @@ export default function IncidentFeed() {
   const pagination = data?.pagination;
 
   return (
-    <div className="p-8 max-w-[1440px] mx-auto">
+    <div className="p-4 md:p-8 max-w-[1440px] mx-auto">
 
       {/* Header */}
-      <div className="mb-6 flex items-start justify-between">
+      <div className="mb-5 flex items-end justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-[#191c1e] tracking-tight mb-1">Incident Feed</h2>
-          <p className="text-sm text-[#434655]">
+          <h2 className="text-xl md:text-2xl font-bold text-[#191c1e] tracking-tight mb-1">Incident Feed</h2>
+          <p className="text-xs md:text-sm text-[#434655]">
             Live stream of all activity — merges, escalations, briefings, and incoming reports.
           </p>
         </div>
@@ -300,7 +300,7 @@ export default function IncidentFeed() {
       </div>
 
       {/* Tab switcher */}
-      <div className="flex items-center gap-1 bg-[#f2f4f6] rounded-xl p-1 w-fit mb-6">
+      <div className="flex items-center gap-1 bg-[#f2f4f6] rounded-xl p-1 w-fit mb-5 overflow-x-auto max-w-full">
         <button
           onClick={() => setTab('activity')}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-colors ${
@@ -332,18 +332,18 @@ export default function IncidentFeed() {
       </div>
 
       {/* Filters */}
-      <div className="mb-5 flex items-center gap-3 flex-wrap">
-        {/* Event type filter — activity tab only */}
+      <div className="mb-5 flex flex-col gap-3">
+        {/* Event type filter — scrollable on mobile */}
         {tab === 'activity' && (
-          <div className="flex items-center gap-1 bg-white border border-[#c3c6d7] rounded-lg p-1 shadow-sm">
+          <div className="flex items-center gap-1 overflow-x-auto pb-1">
             {EVENT_TYPE_FILTERS.map((f) => (
               <button
                 key={f.value}
                 onClick={() => setEventTypeFilter(f.value)}
-                className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
+                className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap flex-shrink-0 transition-colors ${
                   eventTypeFilter === f.value
                     ? 'bg-[#004ac6] text-white'
-                    : 'text-[#434655] hover:bg-[#f2f4f6]'
+                    : 'bg-white border border-[#c3c6d7] text-[#434655] hover:bg-[#f2f4f6]'
                 }`}
               >
                 {f.label}
@@ -351,27 +351,24 @@ export default function IncidentFeed() {
             ))}
           </div>
         )}
-
-        {/* Severity filter */}
-        <div className="flex items-center gap-1 bg-white border border-[#c3c6d7] rounded-lg p-1 shadow-sm">
+        {/* Severity filter — scrollable on mobile */}
+        <div className="flex items-center gap-1 overflow-x-auto pb-1">
           {SEVERITY_FILTERS.map((f) => (
             <button
               key={f.value}
               onClick={() => setSeverityFilter(f.value)}
-              className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap flex-shrink-0 transition-colors ${
                 severityFilter === f.value
                   ? 'bg-[#191c1e] text-white'
-                  : 'text-[#434655] hover:bg-[#f2f4f6]'
+                  : 'bg-white border border-[#c3c6d7] text-[#434655] hover:bg-[#f2f4f6]'
               }`}
             >
               {f.label}
             </button>
           ))}
         </div>
-
-        {/* Result count */}
         {pagination && (
-          <span className="ml-auto text-xs text-[#737686]">
+          <span className="text-xs text-[#737686]">
             {pagination.total} total · page {pagination.page} of {pagination.totalPages}
           </span>
         )}

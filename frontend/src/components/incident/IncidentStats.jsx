@@ -12,7 +12,7 @@ const StatCard = ({ icon, iconBg, iconColor, label, value, extra }) => (
     </div>
     <div>
       <p className="text-xs font-semibold text-[#434655] uppercase tracking-wider mb-1">{label}</p>
-      <p className="text-3xl font-bold text-[#191c1e]">
+      <p className="text-2xl md:text-3xl font-bold text-[#191c1e]">
         {value !== undefined && value !== null ? value : <span className="text-[#737686]">—</span>}
       </p>
     </div>
@@ -54,7 +54,7 @@ const IncidentStats = ({ stats, incidents }) => {
     );
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-4 gap-3">
       <StatCard
         icon="warning"
         iconBg="bg-[#dbe1ff]"

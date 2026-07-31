@@ -58,7 +58,7 @@ export default function IncidentDetail() {
     <div className="max-w-[1440px] mx-auto">
 
       {/* Page Header */}
-      <div className="px-8 py-5 border-b border-[#c3c6d7] bg-white">
+      <div className="px-4 md:px-8 py-4 border-b border-[#c3c6d7] bg-white">
         <div className="flex items-center gap-2 mb-3">
           <button
             onClick={() => navigate('/')}
@@ -125,7 +125,7 @@ export default function IncidentDetail() {
       </div>
 
       {/* Body */}
-      <div className="p-8 grid grid-cols-1 xl:grid-cols-12 gap-6">
+      <div className="p-4 md:p-8 grid grid-cols-1 xl:grid-cols-12 gap-5">
 
         {/* Left — main content */}
         <div className="xl:col-span-7 flex flex-col gap-5">

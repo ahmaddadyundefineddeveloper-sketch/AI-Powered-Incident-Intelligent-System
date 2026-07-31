@@ -141,15 +141,15 @@ export default function SubmitReport() {
   };
 
   return (
-    <div className="p-8 max-w-[1440px] mx-auto">
+    <div className="p-4 md:p-8 max-w-[1440px] mx-auto">
 
       {/* Page header */}
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-[#191c1e] tracking-tight mb-1">Submit Intelligence Report</h2>
-        <p className="text-sm text-[#434655]">Provide raw data for AI fusion and operational briefing generation.</p>
+      <div className="mb-5">
+        <h2 className="text-xl md:text-2xl font-bold text-[#191c1e] tracking-tight mb-1">Submit Intelligence Report</h2>
+        <p className="text-xs md:text-sm text-[#434655]">Provide raw data for AI fusion and operational briefing generation.</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
         {/* ── Left: Form ── */}
         <div className="bg-white border border-[#c3c6d7] rounded-xl shadow-sm p-6 flex flex-col gap-5">

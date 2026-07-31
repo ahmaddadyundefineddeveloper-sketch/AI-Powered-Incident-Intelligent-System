@@ -107,18 +107,17 @@ export default function IntelligenceMap() {
   };
 
   return (
-    <div className="p-8 max-w-[1440px] mx-auto">
+    <div className="p-4 md:p-8 max-w-[1440px] mx-auto">
 
       {/* Header */}
-      <div className="mb-5 flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-[#191c1e] tracking-tight mb-1">Intelligence Maps</h2>
-          <p className="text-sm text-[#434655]">
+          <h2 className="text-xl md:text-2xl font-bold text-[#191c1e] tracking-tight mb-1">Intelligence Maps</h2>
+          <p className="text-xs md:text-sm text-[#434655]">
             Geographic view of all active incidents.
             {mapped.length > 0 && (
               <span className="ml-1 text-[#004ac6] font-semibold">
                 {mapped.length} plotted
-                {incidents.length - mapped.length > 0 && `, ${incidents.length - mapped.length} without location`}
               </span>
             )}
           </p>
@@ -144,37 +143,36 @@ export default function IntelligenceMap() {
         </div>
       </div>
 
-      {/* Stats strip */}
-      <div className="mb-5 flex items-center gap-3 flex-wrap">
+      {/* Stats strip — scrollable on mobile */}
+      <div className="mb-4 flex items-center gap-2 overflow-x-auto pb-1">
         {[
           { label: 'Active',   value: stats?.activeIncidents   ?? '—', color: 'text-[#004ac6]' },
           { label: 'Critical', value: stats?.criticalIncidents ?? '—', color: 'text-[#ba1a1a]' },
           { label: 'Resolved', value: stats?.resolvedIncidents ?? '—', color: 'text-[#16a34a]' },
           { label: 'Reports',  value: stats?.totalReports      ?? '—', color: 'text-[#434655]' },
         ].map(({ label, value, color }) => (
-          <div key={label} className="bg-white border border-[#c3c6d7] rounded-lg px-4 py-2 flex items-center gap-2 shadow-sm">
-            <span className={`text-lg font-bold ${color}`}>{value}</span>
-            <span className="text-xs text-[#434655] font-semibold">{label}</span>
+          <div key={label} className="bg-white border border-[#c3c6d7] rounded-lg px-3 py-2 flex items-center gap-1.5 shadow-sm flex-shrink-0">
+            <span className={`text-base font-bold ${color}`}>{value}</span>
+            <span className="text-[11px] text-[#434655] font-semibold">{label}</span>
           </div>
         ))}
-
-        {/* Severity legend */}
-        <div className="ml-auto flex items-center gap-3 bg-white border border-[#c3c6d7] rounded-lg px-4 py-2 shadow-sm">
+        {/* Legend — hidden on mobile */}
+        <div className="ml-auto hidden sm:flex items-center gap-2 bg-white border border-[#c3c6d7] rounded-lg px-3 py-2 shadow-sm flex-shrink-0">
           {Object.entries(SEVERITY_COLORS).map(([sev, color]) => (
-            <div key={sev} className="flex items-center gap-1.5">
-              <div className="w-3 h-3 rounded-full border-2 border-white shadow-sm" style={{ background: color }} />
-              <span className="text-[11px] font-semibold text-[#434655] capitalize">{sev}</span>
+            <div key={sev} className="flex items-center gap-1">
+              <div className="w-2.5 h-2.5 rounded-full" style={{ background: color }} />
+              <span className="text-[10px] font-semibold text-[#434655] capitalize">{sev}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Main grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Main grid — stacks on mobile */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
 
         {/* Map */}
         <div className="lg:col-span-2 bg-white border border-[#c3c6d7] rounded-xl shadow-sm overflow-hidden"
-          style={{ height: '600px' }}>
+          style={{ height: '400px' }}>
           {loading ? (
             <Spinner centered />
           ) : error ? (
@@ -258,7 +256,7 @@ export default function IntelligenceMap() {
 
         {/* Sidebar incident list */}
         <div className="bg-white border border-[#c3c6d7] rounded-xl shadow-sm flex flex-col overflow-hidden"
-          style={{ height: '600px' }}>
+          style={{ height: '350px' }}>
           <div className="px-4 py-3 border-b border-[#c3c6d7] flex items-center justify-between flex-shrink-0">
             <h3 className="text-sm font-semibold text-[#191c1e]">All Incidents</h3>
             <span className="text-xs text-[#434655]">{incidents.length} total</span>
