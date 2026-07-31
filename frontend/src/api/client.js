@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+// Use env variable if set, otherwise fall back to the deployed backend URL
+const BASE_URL = import.meta.env.VITE_API_URL
+  || (import.meta.env.PROD ? 'https://civiclens-backend-f8mx.onrender.com' : 'http://localhost:5000');
+
 const client = axios.create({
-  baseURL: 'http://localhost:5000',
+  baseURL: BASE_URL,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
